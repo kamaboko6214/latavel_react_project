@@ -4,14 +4,15 @@ import "./bootstrap";
 import ReactDOM from "react-dom/client";
 import Example from "./components/Example";
 import Header from "./components/Header";
+import GroupIndex from "./components/GroupIndex";
 
 function App() {
     return (
         <div>
             <Header />
-            <h1 className="mb-10 text-gray-500">Hello World</h1>
-            <h1 className="text-gray-500">test</h1>
-            <Example />
+            <div class="content" className="bg-bg-content">
+                <GroupIndex />
+            </div>
         </div>
     );
 }
