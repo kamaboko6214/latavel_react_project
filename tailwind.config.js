@@ -7,7 +7,14 @@ module.exports = {
       "./resources/**/*.jsx",
   ],
   theme: {
-      extend: {},
+      extend: {
+        colors: {
+          // 'カラー名': 'カラーコード'
+          'green-bg': '#88B168',
+          'bg-content': '#E1C292',
+        },
+  
+      },
   },
   plugins: [],
 }
