@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Header = () => {
+  const [users, setUsers] = useState('');
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/user")
+      .then((response) => setUsers(response.data[0]))
+      .catch((error) => console.log(error));
+  }, []);
+console.log({users})
   return (
     <div className="text-white top-0 z-10 bg-green-bg ">
       <div className='container mx-auto py-3 flex items-center md:flex-row'>
@@ -18,6 +27,7 @@ const Header = () => {
           <li><a  href='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</a></li>
           <li><a  href='#' className='mr-5 hover:text-teal-200 duration-300'>設定</a></li>
         </ul>
+        <input type="text" value={users.id} className='text-gray-900'/>
       </div>
 
     </div>
