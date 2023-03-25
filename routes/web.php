@@ -19,5 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('top');
 
-Route::resource('group', GroupController::class);
 Route::resource('user', Usercontroller::class);
+Auth::routes();
+
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
