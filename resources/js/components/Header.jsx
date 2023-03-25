@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import GroupIndex from './GroupIndex';
 
 const Header = () => {
@@ -22,19 +22,13 @@ const Header = () => {
           </svg>
         </span>
         <span className='text-xl font-bold'>
-          ストチャレ！
+            ストチャレ！
         </span>
         <ul className='flex md:ml-auto'>
-          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>ホーム</a></li>
-          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</a></li>
-          <li><a href='/group' className='mr-5 hover:text-teal-200 duration-300'>設定</a></li>
-          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>ログアウト</a></li>
-          <Routes>
-            <Route path="/group" element={<GroupIndex/>}/>
-            <Route path="#" />
-            <Route path="#" />
-            <Route path="#"  />
-          </Routes>
+          <li><Link to='/' className='mr-5 hover:text-teal-200 duration-300'>ホーム</Link></li>
+          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</Link></li>
+          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>設定</Link></li>
+          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>ログアウト</Link></li>
         </ul>
       </div>
 
