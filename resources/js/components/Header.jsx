@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom';
+import GroupIndex from './GroupIndex';
 
 const Header = () => {
   const [users, setUsers] = useState('');
@@ -9,7 +11,7 @@ const Header = () => {
       .then((response) => setUsers(response.data[0]))
       .catch((error) => console.log(error));
   }, []);
-console.log({users})
+  console.log({ users })
   return (
     <div className="text-white top-0 z-10 bg-green-bg ">
       <div className='container mx-auto py-3 flex items-center md:flex-row'>
@@ -23,11 +25,17 @@ console.log({users})
           ストチャレ！
         </span>
         <ul className='flex md:ml-auto'>
-          <li><a  href='#' className='mr-5 hover:text-teal-200 duration-300'>ホーム</a></li>
-          <li><a  href='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</a></li>
-          <li><a  href='#' className='mr-5 hover:text-teal-200 duration-300'>設定</a></li>
+          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>ホーム</a></li>
+          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</a></li>
+          <li><a href='/group' className='mr-5 hover:text-teal-200 duration-300'>設定</a></li>
+          <li><a href='#' className='mr-5 hover:text-teal-200 duration-300'>ログアウト</a></li>
+          <Routes>
+            <Route path="/group" element={<GroupIndex/>}/>
+            <Route path="#" />
+            <Route path="#" />
+            <Route path="#"  />
+          </Routes>
         </ul>
-        <input type="text" value={users.id} className='text-gray-900'/>
       </div>
 
     </div>
