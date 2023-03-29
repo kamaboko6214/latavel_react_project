@@ -9,7 +9,6 @@ const Header = () => {
     axios
       .get("http://localhost:8000/api/user")
       .then((response) => setUsers(response.data[0]))
-      .catch((error) => console.log(error));
   }, []);
   console.log({ users })
   return (
@@ -28,7 +27,7 @@ const Header = () => {
           <li><Link to='/' className='mr-5 hover:text-teal-200 duration-300'>ホーム</Link></li>
           <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</Link></li>
           <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>設定</Link></li>
-          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>ログアウト</Link></li>
+          <li><Link to='/login' className='mr-5 hover:text-teal-200 duration-300'>ログイン</Link></li>
         </ul>
       </div>
 
