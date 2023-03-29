@@ -2,6 +2,7 @@ import React from 'react'
 
 const GroupIndex = () => {
   return (
+    
     <div className='mx-auto bg-bg-content'>
       <div className=" text-center flex pb-20">
         <div class='body' className='w-1/4 mt-20 text-center'>

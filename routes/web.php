@@ -15,11 +15,7 @@ use App\Http\Controllers\GroupController;
 |
 */
 
-Route::get('/', function () {
+Route::get('{any}', function () {
     return view('welcome');
-})->name('top');
+})->where('any','.*');
 
-Route::resource('user', Usercontroller::class);
-// Auth::routes();
-
-Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
