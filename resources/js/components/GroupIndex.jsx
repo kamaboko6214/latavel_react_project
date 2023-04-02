@@ -5,7 +5,7 @@ const GroupIndex = () => {
     
     <div className='mx-auto bg-bg-content'>
       <div className=" text-center flex pb-20">
-        <div class='body' className='w-1/4 mt-20 text-center'>
+        <div id='body' className='w-1/4 mt-20 text-center'>
           <div className='mx-auto'>
             <h1 className='text-white text-2xl font-bold'>ユーザーネーム</h1>
             <div className='bg-white rounded-full h-44 w-44 mx-auto mt-3'></div>
