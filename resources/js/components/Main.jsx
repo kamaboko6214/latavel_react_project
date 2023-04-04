@@ -3,7 +3,7 @@ import "../bootstrap";
 import ReactDOM from "react-dom/client";
 import Header from "./Header";
 import Footer from "./Footer";
-import GroupIndex from "./GroupIndex";
+import GroupIndex from "./Home/GroupIndex";
 import Login from "./Auth/Login";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

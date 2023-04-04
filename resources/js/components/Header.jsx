@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
-import GroupIndex from './GroupIndex';
+import GroupIndex from './Home/GroupIndex';
+import Nav from './Nav';
 
 const Header = () => {
   const [users, setUsers] = useState('');
@@ -23,12 +24,7 @@ const Header = () => {
         <span className='text-xl font-bold'>
             ストチャレ！
         </span>
-        <ul className='flex md:ml-auto'>
-          <li><Link to='/' className='mr-5 hover:text-teal-200 duration-300'>ホーム</Link></li>
-          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>マイページ</Link></li>
-          <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>設定</Link></li>
-          <li><Link to='/login' className='mr-5 hover:text-teal-200 duration-300'>ログイン</Link></li>
-        </ul>
+        <Nav />
       </div>
 
     </div>
