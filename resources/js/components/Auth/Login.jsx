@@ -14,21 +14,21 @@ const Login = () => {
 
   const handleClick = () => {
     const loginParams = { email, password }
-    axios
-      // CSRF保護の初期化
-      .get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
-      .then((response) => {
-      // ログイン処理
-        axios
-          .post(
-            'http://localhost:8000/api/login',
-            loginParams,
-            { withCredentials: true }
-          )
-          .then((response) => {
-            console.log(response.data)
-          })
+    console.log(loginParams);
+    axios.get("/sanctum/csrf-cookie").then(response => {
+      axios
+      .post("http://localhost/api/login", 
+        loginParams
+      )
+      .then(res => {
+        console.log(res.data);
+        if (res.data.result) {
+          console.log('[login]ログイン成功');
+        } else {
+          console.log('[login]ログイン失敗');
+        }
       })
+    })
   }
 
   const handleUserClick = () => {

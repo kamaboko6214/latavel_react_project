@@ -1,4 +1,6 @@
 import React from 'react'
+import Rank from './Rank'
+import Userarea from './Userarea'
 
 const GroupIndex = () => {
   return (
@@ -6,22 +8,8 @@ const GroupIndex = () => {
     <div className='mx-auto bg-bg-content'>
       <div className=" text-center flex pb-20">
         <div id='body' className='w-1/4 mt-20 text-center'>
-          <div className='mx-auto'>
-            <h1 className='text-white text-2xl font-bold'>ユーザーネーム</h1>
-            <div className='bg-white rounded-full h-44 w-44 mx-auto mt-3'></div>
-            <div className='text-white'>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Accusantium quis repellat reiciendis, commodi aspernatur cons
-              ectetur at soluta exercitationem possimus iusto facilis, prov
-              ident mollitia incidunt corrupti totam sapiente numquam eum harum.</div>
-          </div>
-          <div className='mt-40 mx-auto mb-40'>
-            <h1 className='text-white text-2xl font-bold'>ランキング</h1>
-            <div className='container h-10 w-80 bg-slate-50 mt-10 mx-auto'></div>
-            <div className='container h-10 w-80 bg-slate-50 mt-10 mx-auto'></div>
-            <div className='container h-10 w-80 bg-slate-50 mt-10 mx-auto'></div>
-            <div className='container h-10 w-80 bg-slate-50 mt-10 mx-auto'></div>
-            <div className='container h-10 w-80 bg-slate-50 mt-10 mx-auto'></div>
-          </div>
+          <Userarea />
+          <Rank />
         </div>
         <div className='w-3/4'>
           <h1 className='text-gray-50 font-bold text-3xl mt-4'>

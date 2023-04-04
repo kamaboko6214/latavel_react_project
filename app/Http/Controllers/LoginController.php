@@ -9,18 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(Request $request)
     {
+        var_dump($request);
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => 'required',
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json(['name' => Auth::user()->email], 200);
+    
+            return response()->json(Auth::user());
         }
-
-        throw new Exception('ログインに失敗しました。再度お試しください');
+        return response()->json([], 401);
     }
 }
