@@ -5,13 +5,6 @@ import Nav from './Nav';
 
 const Header = () => {
   const [users, setUsers] = useState('');
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/user")
-      .then((response) => setUsers(response.data[0]))
-  }, []);
-  console.log({ users })
   return (
     <div className="text-white top-0 z-10 bg-green-bg ">
       <div className='container mx-auto py-3 flex items-center md:flex-row'>

@@ -14,25 +14,20 @@ const Login = () => {
 
   const handleClick = () => {
     const loginParams = { email, password }
+    console.log(loginParams);
     axios.get("/sanctum/csrf-cookie").then(response => {
       axios
-      .post("http://localhost/api/login", {
+      .post("http://localhost/api/login", 
         loginParams
-      })
+      )
       .then(res => {
         console.log(res.data);
         if (res.data.result) {
           console.log('[login]ログイン成功');
-          setUser(res.data.user);
         } else {
-          console.log(res.data.message);
           console.log('[login]ログイン失敗');
         }
       })
-      .catch(err => {
-        console.log(err.response);
-        console.log('[login]ログイン失敗');
-      });
     })
   }
 
