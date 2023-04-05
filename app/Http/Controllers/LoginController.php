@@ -11,17 +11,24 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        var_dump($request);
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
+            "email" => ["required", "email"],
+            "password" => ["required"],
+          ]); 
+        $result = false;
+        $status = 401;
+        $message = 'ユーザが見つかりません';
+        $user = null;
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-    
-            return response()->json(Auth::user());
+            // Success
+            $result = true;
+            $status = 200;
+            $message = 'OK';
+            $user = Auth::user();
+            // // ※古いトークン削除&新しいトークン生成
+            // $user->tokens()->where('name', 'token-name')->delete();
+            // $token = $user->createToken('token-name')->plainTextToken;
         }
-        return response()->json([], 401);
+        return response()->json(['result' => $result, 'status' => $status, 'user' => $user, 'message' => $message]);
     }
 }
