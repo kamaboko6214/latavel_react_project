@@ -14,10 +14,10 @@ const  Top = () => {
                 <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300'>新規登録する！</button>
             </div>
             <div className='mb-10'>
-                <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-30'>ログインする！</button>
+                <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300'>ログインする！</button>
             </div>
             <div className='pb-10'>
-                <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-30'>ゲスト登録！</button>
+                <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300'>ゲスト登録！</button>
             </div>
         </div>
     </div>
