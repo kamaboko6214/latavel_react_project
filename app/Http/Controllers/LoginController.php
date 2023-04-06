@@ -25,9 +25,6 @@ class LoginController extends Controller
             $status = 200;
             $message = 'OK';
             $user = Auth::user();
-            // // ※古いトークン削除&新しいトークン生成
-            // $user->tokens()->where('name', 'token-name')->delete();
-            // $token = $user->createToken('token-name')->plainTextToken;
         }
         return response()->json(['result' => $result, 'status' => $status, 'user' => $user, 'message' => $message]);
     }

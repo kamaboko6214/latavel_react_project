@@ -6,12 +6,14 @@ import Footer from "./Footer";
 import GroupIndex from "./Home/GroupIndex";
 import Login from "./Auth/Login";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Top from "./Auth/ Top";
 
 const Main = () => {
     return (
         <Routes>
             <Route path="/" element={<GroupIndex />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/Top" element={<Top />} />
         </Routes>
     );
 }
