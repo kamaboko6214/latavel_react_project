@@ -36,7 +36,14 @@ const Login = () => {
         });
     })
   }
-  
+  const chekc = () => {
+    axios.get("/sanctum/csrf-cookie").then((res) => {
+    axios.get("api/user")
+    .then((res) => 
+    console.log(res.data)
+    )
+  })
+}
   return (
     <div className='bg-gray-100 mx-auto flex w-ful flex-col items-center'>
       <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>ログイン</h1>
@@ -51,6 +58,7 @@ const Login = () => {
         </div>
         <div>
           <button value="ログイン" className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>ログイン</button>
+        <button onClick={chekc}>wao</button>
         </div>
       </div>
     </div>
