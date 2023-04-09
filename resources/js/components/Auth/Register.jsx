@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const Login = () => {
 
-  const [user, setUser] = useState(null);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -24,29 +23,17 @@ const Login = () => {
           if (res.data.result) {
             console.log('[login]ログイン成功');
             setUser(res.data.user);
-
           } else {
             console.log(res.data.message);
             console.log('[login]ログイン失敗');
           }
         })
-        .catch(err => {
-          console.log(err.response);
-          console.log('[login]ログイン失敗');
-        });
     })
   }
-  const chekc = () => {
-    axios.get("/sanctum/csrf-cookie").then((res) => {
-    axios.get("api/user")
-    .then((res) => 
-    console.log(res.data)
-    )
-  })
-}
+
   return (
     <div className='bg-gray-100 mx-auto flex w-ful flex-col items-center'>
-      <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>ログイン</h1>
+      <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>新規登録</h1>
       <div className='block max-w-sm rounded-lg mx-auto shadow mb-44 mt-20 border-gray-200  bg-gray-200 text-center w-3/4 h-96'>
         <div className='mx-auto items-center'>
           <h3 className='mt-6'>メールアドレス</h3>
@@ -57,8 +44,7 @@ const Login = () => {
           <input type="password" className='text-gray-800 mb-14 h-16  w-5/6' onChange={changePassword} />
         </div>
         <div>
-          <button value="ログイン" className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>ログイン</button>
-        <button onClick={chekc}>wao</button>
+          <button className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>登録</button>
         </div>
       </div>
     </div>
