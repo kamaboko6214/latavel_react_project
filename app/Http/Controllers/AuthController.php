@@ -7,8 +7,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
+    public function register(Request $request) 
+    {
+        $credentials = $request->validate([
+            "email" => ["required", "email"],
+            "password" => ["required"],
+          ]); 
+
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
