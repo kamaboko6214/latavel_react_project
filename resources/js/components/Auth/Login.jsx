@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Login = () => {
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState('')
@@ -17,33 +21,31 @@ const Login = () => {
     const loginParams = { email, password }
     axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post("api/login",
-      loginParams
+        loginParams
       )
         .then((res) => {
           console.log(res.data);
-          if (res.data.result) {
+          if (res.data.status == 200) {
             console.log('[login]ログイン成功');
             setUser(res.data.user);
-
+            localStorage.setItem('auth_name', res.data.name);
+            swal({text:"ログイン成功", icon:"success"});
+            navigate('/top');
           } else {
             console.log(res.data.message);
             console.log('[login]ログイン失敗');
           }
         })
-        .catch(err => {
-          console.log(err.response);
-          console.log('[login]ログイン失敗');
-        });
     })
   }
   const chekc = () => {
     axios.get("/sanctum/csrf-cookie").then((res) => {
-    axios.get("api/user")
-    .then((res) => 
-    console.log(res.data)
-    )
-  })
-}
+      axios.get("api/user")
+        .then((res) =>
+          console.log(res.data)
+        )
+    })
+  }
   return (
     <div className='bg-gray-100 mx-auto flex w-ful flex-col items-center'>
       <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>ログイン</h1>
@@ -58,7 +60,7 @@ const Login = () => {
         </div>
         <div>
           <button value="ログイン" className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>ログイン</button>
-        <button onClick={chekc}>wao</button>
+          <button onClick={chekc}>wao</button>
         </div>
       </div>
     </div>
