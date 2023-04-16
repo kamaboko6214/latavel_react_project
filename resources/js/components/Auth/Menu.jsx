@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Guest from './Guest'
 
 const Menu = () => {
     return (
@@ -17,9 +18,7 @@ const Menu = () => {
                 <div className='mb-10'>
                     <Link to='/login'><button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300'>ログインする！</button></Link>
                 </div>
-                <div className='pb-10'>
-                    <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300'>ゲスト登録！</button>
-                </div>
+                <Guest />
             </div>
         </div>
     )
