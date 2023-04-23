@@ -12,7 +12,6 @@ import Menu from "./Auth/Menu";
 const Main = () => {
     return (
         <Routes>
-            if ()
             <Route path="/" element={<Menu />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

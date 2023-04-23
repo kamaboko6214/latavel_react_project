@@ -3,6 +3,11 @@ import Rank from './Rank'
 import Userarea from './Userarea'
 
 const GroupIndex = () => {
+  const handleUserClick = () => {
+    axios.get('api/user').then((response) => {
+      console.log(response.data)
+    })
+  }
   return (
     
     <div className='mx-auto bg-bg-content'>
@@ -14,6 +19,7 @@ const GroupIndex = () => {
         <div className='w-3/4'>
           <h1 className='text-gray-50 font-bold text-3xl mt-4'>
             グループ一覧
+            <button onClick={handleUserClick}>osite</button>
           </h1>
           <div className=''>
             <ul className>
