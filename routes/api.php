@@ -20,7 +20,11 @@ use App\Models\User;
 */
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
-Route::get('/user', function (Request $request) {
+Route::group(["middleware" => ["auth:sanctum"]], function () {
+    Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+    });
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
