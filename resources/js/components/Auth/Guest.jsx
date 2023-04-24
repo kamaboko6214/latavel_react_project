@@ -17,7 +17,6 @@ const Guest = () => {
                     console.log(res.data);
                     if (res.data.result) {
                         setUser(res.data.user);
-                        localStorage.setItem('auth_name', res.data.username);
                         swal({ text: "ゲストログイン", icon: "success" });
                         navigate('/top');
                     } else {
