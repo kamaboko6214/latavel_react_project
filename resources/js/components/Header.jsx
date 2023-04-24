@@ -3,8 +3,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import GroupIndex from './Home/GroupIndex';
 import Nav from './Nav';
 
-const Header = () => {
-  const [users, setUsers] = useState('');
+const Header = (props) => {
+  const user = props.user
   return (
     <div className="text-white top-0 z-10 bg-green-bg ">
       <div className='container mx-auto py-3 flex items-center md:flex-row'>
@@ -17,7 +17,7 @@ const Header = () => {
         <span className='text-xl font-bold'>
             ストチャレ！
         </span>
-        <Nav />
+        <Nav user={user}/>
       </div>
 
     </div>

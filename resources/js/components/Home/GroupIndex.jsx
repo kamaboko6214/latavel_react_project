@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Rank from './Rank'
 import Userarea from './Userarea'
 
 const GroupIndex = () => {
+
+  const [user, setuser] = useState('')
+  useEffect(() => {
+    handleUserClick()
+  },[])
+
   const handleUserClick = () => {
     axios.get('api/user').then((response) => {
       console.log(response.data)
+      setuser(response.data.name)
     })
   }
   return (
@@ -13,7 +20,7 @@ const GroupIndex = () => {
     <div className='mx-auto bg-bg-content'>
       <div className=" text-center flex pb-20">
         <div id='body' className='w-1/4 mt-20 text-center'>
-          <Userarea />
+          <Userarea user={user}/>
           <Rank />
         </div>
         <div className='w-3/4'>

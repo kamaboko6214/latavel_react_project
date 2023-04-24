@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
-const Nav = () => {
-    const [user, setuser] = useState(null)
+const Nav = (props) => {
+    const [user,setuser] = useState(props.user);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -14,13 +14,12 @@ const Nav = () => {
 
     const getUser = () => {
         axios.get('api/user').then((response) => {
-            console.log(response.data)
             setuser(response.data)
         })
     }
 
     const logout = () => {
-        axios.get('/logout').then((res) => {
+        axios.post('api/logout').then((res) => {
             setuser(null);
             console.log(res.data)
           })
@@ -39,7 +38,6 @@ const Nav = () => {
                     console.log(res.data);
                     if (res.data.result) {
                         setuser(res.data.user);
-                        localStorage.setItem('auth_name', res.data.username);
                         swal({ text: "ゲストログイン", icon: "success" });
                         navigate('/top');
                     } else {
