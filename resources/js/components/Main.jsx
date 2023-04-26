@@ -9,6 +9,7 @@ import Register from "./Auth/Register";
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Menu from "./Auth/Menu";
 import { useEffect, useState } from "react";
+import Mypage from "./Mypage";
 
 const Main = (props) => {
     const user = props.user;
@@ -31,6 +32,7 @@ const Main = (props) => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/Top" element={<GroupIndex />} />
+                <Route path="/Mypage" element={<Mypage />} />
             </>
         )
     } else {
