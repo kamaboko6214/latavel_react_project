@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const Login = () => {
@@ -39,7 +39,8 @@ const Login = () => {
     })
   }
   return (
-    <div className='bg-gray-100 mx-auto flex w-ful flex-col items-center'>
+    <div className='bg-white mx-auto flex w-ful flex-col items-center'>
+      <h3 className='pt-5'>アカウントをお持ちの場合はこちら <span><Link to='/login'>ログイン</Link></span></h3>
       <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>新規登録</h1>
       <div className='block max-w-sm rounded-lg mx-auto shadow mb-44 mt-20 border-gray-200  bg-gray-200 text-center w-3/4 h-96'>
         <div className='mx-auto items-center'>

@@ -12,11 +12,31 @@ import { useEffect, useState } from "react";
 import Mypage from "./Mypage";
 
 const Main = (props) => {
-    const user = props.user;
+    const [user, setuser] = useState(props.user)
     const navigate = useNavigate();
+
     const navi = () => {
         navigate('/');
     }
+
+    useEffect(() => {
+        getUser()
+    },[])
+    
+    const getUser = () => {        
+        axios.get('/api/user').then(response => {
+            if(response.status == 200) {
+                const newuser = response.data
+                console.log(user)
+
+                setuser(newuser)
+            } else {
+                console.log('dame')
+                navi()
+            }
+        });
+    }
+
     let isrouter = (
         <>
             <Route path="/" element={<Menu />} />
@@ -32,11 +52,9 @@ const Main = (props) => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/Top" element={<GroupIndex />} />
-                <Route path="/Mypage" element={<Mypage />} />
+                <Route path="/Mypage" element={<Mypage />}  />
             </>
         )
-    } else {
-       navi()
     }
 
     return (

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-
+import { useCookies } from 'react-cookie';
 
 const Guest = () => {
-    const [user, setUser] = useState(null);
+    const [user, setuser] = useState(null);
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -14,9 +14,8 @@ const Guest = () => {
                 loginParams
             )
                 .then((res) => {
-                    console.log(res.data);
                     if (res.data.result) {
-                        setUser(res.data.user);
+                        setuser(res.data.user);
                         swal({ text: "ゲストログイン", icon: "success" });
                         navigate('/top');
                     } else {
@@ -27,10 +26,7 @@ const Guest = () => {
     }
 
     return (
-        <div className='pb-10'>
             <button className='bg-oriblue h-20 w-96 text-white font-bold text-2xl shadow-md rounded-lg hover:bg-hovercol duration-300' onClick={handleClick}>ゲスト登録！</button>
-        </div>
-
     )
 }
 
