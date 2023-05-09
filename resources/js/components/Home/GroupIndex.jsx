@@ -11,7 +11,6 @@ const GroupIndex = () => {
 
   const handleUserClick = () => {
     axios.get('api/user').then((response) => {
-      console.log(response.data)
       setuser(response.data.name)
     })
   }

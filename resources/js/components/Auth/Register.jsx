@@ -1,65 +1,58 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Login = () => {
 
-  const [user, setUser] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   const navigate = useNavigate();
 
-  const changeName = (e) => {
-    setName(e.target.value)
-  }
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const changeEmail = (e) => {
     setEmail(e.target.value)
   }
-
   const changePassword = (e) => {
     setPassword(e.target.value)
   }
 
   const handleClick = () => {
-    const loginParams = { name, email, password }
+    const loginParams = { email, password }
     axios.get("/sanctum/csrf-cookie").then((res) => {
-      axios.post("api/register",
+      axios.post("api/login",
         loginParams
       )
         .then((res) => {
           console.log(res.data);
-          if (res.data.result) {
+          if (res.data.status == 200) {
+            console.log('[login]ログイン成功');
             setUser(res.data.user);
-            localStorage.setItem('auth_name', res.data.username);
-            swal({text:"ユーザー登録完了", icon:"success"});
+            localStorage.setItem('auth_name', res.data.name);
+            swal({text:"ログイン成功", icon:"success"});
             navigate('/top');
           } else {
-            console.log('NG');
+            console.log(res.data.message);
+            console.log('[login]ログイン失敗');
           }
         })
     })
   }
-
   return (
-    <div className='bg-gray-100 mx-auto flex w-ful flex-col items-center'>
+    <div className='bg-white mx-auto flex w-ful flex-col items-center'>
+      <h3 className='pt-5'>アカウントをお持ちの場合はこちら <span><Link to='/login'>ログイン</Link></span></h3>
       <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>新規登録</h1>
-      <div className='block max-w-sm rounded-lg mx-auto shadow mb-44 mt-20 border-gray-200  bg-gray-200 text-center w-3/4 h-auto'>
+      <div className='block max-w-sm rounded-lg mx-auto shadow mb-44 mt-20 border-gray-200  bg-gray-200 text-center w-3/4 h-96'>
         <div className='mx-auto items-center'>
-          <h3 className='mt-6'>名前</h3>
-          <input type="text" className='text-gray-800 mb-6 h-16 w-5/6' onChange={changeName} />
-        </div>
-        <div className='mx-auto items-center'>
-          <h3 >メールアドレス</h3>
-          <input type="text" className='text-gray-800 mb-6 h-16 w-5/6' onChange={changeEmail} />
+          <h3 className='mt-6'>メールアドレス</h3>
+          <input type="text" className='text-gray-800 mb-10 h-16 w-5/6' onChange={changeEmail} />
         </div>
         <div>
           <h3>パスワード</h3>
           <input type="password" className='text-gray-800 mb-14 h-16  w-5/6' onChange={changePassword} />
         </div>
         <div>
-          <button className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>登録</button>
+          <button value="ログイン" className='bg-green-300 cursor-pointer h-16  w-5/6' onClick={handleClick}>ログイン</button>
         </div>
       </div>
     </div>

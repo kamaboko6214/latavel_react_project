@@ -4,9 +4,9 @@ import Guest from './Guest'
 
 const Menu = () => {
     return (
-        <div className='bg-gradient-to-l bg-green-bg'>
+        <div className='bg-gradient-to-l bg-green-bg h-screen'>
             <div>
-                <h1 className='text-6xl text-white font-bold pt-16 text-center' >ストチャレ</h1>
+                <h1 className='text-6xl text-white font-bold pt-16 text-center' ></h1>
             </div>
             <div>
                 <h1 className='text-5xl pt-24 text-center font-bold text-white tracking-wider'>ストイック<span className='text-gray-900 text-4xl' >な</span>チャレンジ<span className='text-gray-900 text-4xl' >を</span><br />共有<span className='text-gray-900 text-4xl' >しよう</span></h1>
