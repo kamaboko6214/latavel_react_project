@@ -18,7 +18,7 @@ const Header = () => {
   }
 
   let headerdata = (
-    <div className="text-white top-0 z-10 bg-green-bg ">
+    <div className="text-white top-0 z-10 bg-green-bg grid-cols-1">
     <div className='container mx-auto py-3 flex items-center md:flex-row'>
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

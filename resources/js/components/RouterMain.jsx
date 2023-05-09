@@ -10,8 +10,9 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Menu from "./Auth/Menu";
 import { useEffect, useState } from "react";
 import Mypage from "./Mypage";
+import PrivateRoute from "./PrivateRoute";
 
-const Main = (props) => {
+const RouterMain = (props) => {
     const [user, setuser] = useState(props.user)
     const navigate = useNavigate();
 
@@ -27,41 +28,23 @@ const Main = (props) => {
         axios.get('/api/user').then(response => {
             if(response.status == 200) {
                 const newuser = response.data
-                console.log(user)
 
                 setuser(newuser)
             } else {
-                console.log('dame')
                 navi()
             }
         });
     }
 
-    let isrouter = (
-        <>
+    return (
+        <Routes>
             <Route path="/" element={<Menu />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-        </>
-    );
-
-    if (user) {
-        isrouter = (
-            <>
-                <Route path="/" element={<Menu />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/Top" element={<GroupIndex />} />
-                <Route path="/Mypage" element={<Mypage />}  />
-            </>
-        )
-    }
-
-    return (
-        <Routes>
-            {isrouter}
+            <Route path="/Top" element={<GroupIndex />} />
+            <Route path="/Mypage" element={<Mypage />}  />
         </Routes>
     );
 }
 
-export default Main;
+export default RouterMain;

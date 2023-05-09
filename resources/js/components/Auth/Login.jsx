@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useCookies } from 'react-cookie';
+import { useLogin } from '../../queries/authquery'
 
 const Login = () => {
-
+  const login = useLogin();
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
   const [user, setUser] = useState(null);
@@ -19,26 +20,9 @@ const Login = () => {
   }
 
   const handleClick = () => {
-    const loginParams = { email, password }
-    axios.get("/sanctum/csrf-cookie").then((res) => {
-      axios.post("api/login",
-        loginParams
-      )
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.status == 200) {
-            console.log('[login]ログイン成功');
-            setUser(res.data.user);
-            setCookie('user', res.data.user, { path: '/' })
-            swal({ text: "ログイン成功", icon: "success" });
-            navigate('/top');
-          } else {
-            console.log(res.data.message);
-            console.log('[login]ログイン失敗');
-          }
-        })
-    })
+    login.mutate({ email,password})
   }
+
   return (
     <div className='bg-white mx-auto flex w-ful flex-col items-center h-full'>
       <h3 className='pt-5'>アカウントをお持ちでない場合はこちら <span><Link to='/register'>新規登録</Link></span></h3>
