@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { AuthContext }  from '../components/RouterMain'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-import { useLogout, useUser } from '../queries/AuthQuery'
-// import useAuth from '../hooks/AuthContext'
+import { useLogin, useLogout, useUser } from '../queries/AuthQuery'
+
 
 const Nav = () => {
     const logout = useLogout();
-    const [user, setuser] = useState();
+    const login = useLogin();
     const navigate = useNavigate();
-    // const [isAuth, setIsAuth] = useAuth();
+    const {isAuth, setIsAuth} = useContext(AuthContext);
 
     const navigation = (
         <ul className='flex md:ml-auto'>
@@ -22,24 +23,13 @@ const Nav = () => {
 
     const loginNavigation = (
         <ul className='flex md:ml-auto'>
-            <li><Link to='#' className='mr-5 hover:text-teal-200 duration-300'>設定</Link></li>
+            <li><Link to='/' className='mr-5 hover:text-teal-200 duration-300' onClick={() => login.mutate()}>ログイン</Link></li> 
         </ul>
     )
 
-    useEffect(() => {
-        getUser()
-    }, [])
-
-    const getUser = () => {
-        axios.get('api/user').then((response) => {
-            setuser(response.data)
-        })
-    }
-
     return (
         <div className='flex md:ml-auto'>
-            {/* {isAuth ? navigation : loginNavigation} */}
-            {navigation}
+            {isAuth ? navigation : loginNavigation}
         </div>
 
     )

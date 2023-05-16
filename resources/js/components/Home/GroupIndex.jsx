@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../RouterMain';
 import Rank from './Rank'
 import Userarea from './Userarea'
 
 const GroupIndex = () => {
-
+  const {isAuth, setIsAuth} = useContext(AuthContext);
   const [user, setuser] = useState('')
   useEffect(() => {
     handleUserClick()
   },[])
 
   const handleUserClick = () => {
-    axios.get('api/user').then((response) => {
-      setuser(response.data.name)
-    })
+    console.log(isAuth)
   }
   return (
     
