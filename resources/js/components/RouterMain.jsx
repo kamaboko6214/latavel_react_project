@@ -8,42 +8,41 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Menu from "./Auth/Menu";
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Mypage from "./Mypage";
-import PrivateRoute from "./PrivateRoute";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Notfound from "./Notfound/Notfound";
 
-const RouterMain = (props) => {
-    const [user, setuser] = useState(props.user)
-    const navigate = useNavigate();
+export const AuthContext = createContext();
 
-    const navi = () => {
-        navigate('/');
+const RouterMain = () => {
+    const queryClient = new QueryClient();
+    const [isAuth, setIsAuth] = useState(false)
+    const value = {
+        isAuth, setIsAuth
     }
-
-    useEffect(() => {
-        getUser()
-    },[])
     
-    const getUser = () => {        
-        axios.get('/api/user').then(response => {
-            if(response.status == 200) {
-                const newuser = response.data
-
-                setuser(newuser)
-            } else {
-                navi()
-            }
-        });
-    }
-
     return (
-        <Routes>
-            <Route path="/" element={<Menu />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/Top" element={<GroupIndex />} />
-            <Route path="/Mypage" element={<Mypage />}  />
-        </Routes>
+        <AuthContext.Provider value={value} >
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                        <div>
+                            <Header />
+                            <div className="flex flex-col min-h-screen">
+                                <Routes>
+                                    <Route path="/" element={<Menu />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="/register" element={<Register />} />
+                                    <Route path="/Top" element={<GroupIndex />} />
+                                    <Route path="/Mypage" element={<Mypage />} />
+                                    <Route path="/*" element={<Notfound />} />
+                                </Routes>
+                            </div>
+                            <Footer />
+                        </div>
+                </BrowserRouter>
+            </QueryClientProvider>
+        </AuthContext.Provider>
     );
 }
 
