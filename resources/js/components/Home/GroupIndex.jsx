@@ -5,14 +5,6 @@ import Userarea from './Userarea'
 
 const GroupIndex = () => {
   const {isAuth, setIsAuth} = useContext(AuthContext);
-  const [user, setuser] = useState('')
-  useEffect(() => {
-    handleUserClick()
-  },[])
-
-  const handleUserClick = () => {
-    console.log(isAuth)
-  }
   return (
     
     <div className='mx-auto bg-bg-content'>
