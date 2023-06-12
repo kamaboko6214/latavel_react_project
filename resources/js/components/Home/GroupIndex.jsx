@@ -5,18 +5,27 @@ import Userarea from './Userarea'
 
 const GroupIndex = () => {
   const {isAuth, setIsAuth} = useContext(AuthContext);
+  const check = () => {
+    axios.get("/sanctum/csrf-cookie").then(() => {
+      axios.get('/api/user')
+      .then((res) => {
+          setIsAuth(res.data)
+          console.log(res.data)
+      })
+  })
+  }
   return (
     
     <div className='mx-auto bg-bg-content'>
       <div className=" text-center flex pb-20">
         <div id='body' className='w-1/4 mt-20 text-center'>
-          <Userarea user={user}/>
+          <Userarea/>
           <Rank />
         </div>
         <div className='w-3/4'>
           <h1 className='text-gray-50 font-bold text-3xl mt-4'>
             グループ一覧
-            <button onClick={handleUserClick}>osite</button>
+            <button onClick={check}>check</button>
           </h1>
           <div className=''>
             <ul className>
