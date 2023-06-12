@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-import { useCookies } from 'react-cookie';
-import { useLogin } from '../../queries/authquery'
+import { AuthContext } from '../RouterMain';
 
 const Login = () => {
-  const login = useLogin();
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['user']);
-  const [user, setUser] = useState(null);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {isAuth, setIsAuth} = useContext(AuthContext);
 
   const changeEmail = (e) => {
     setEmail(e.target.value)
@@ -20,7 +17,24 @@ const Login = () => {
   }
 
   const handleClick = () => {
-    login.mutate({ email,password})
+    const loginParams = { email, password }
+    axios.get("/sanctum/csrf-cookie").then((res) => {
+      axios.post("api/login",
+        loginParams
+      )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.status == 200) {
+            console.log('[login]ログイン成功');
+            setIsAuth(res.data.user);
+            swal({text:"ログイン成功", icon:"success"});
+            navigate('/top');
+          } else {
+            console.log(res.data.message);
+            console.log('[login]ログイン失敗');
+          }
+        })
+    })
   }
 
   return (

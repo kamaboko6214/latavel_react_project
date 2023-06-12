@@ -10,38 +10,66 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Menu from "./Auth/Menu";
 import { createContext, useContext, useEffect, useState } from "react";
 import Mypage from "./Mypage";
-import { QueryClient, QueryClientProvider } from 'react-query';
 import Notfound from "./Notfound/Notfound";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
 const RouterMain = () => {
-    const queryClient = new QueryClient();
-    const [isAuth, setIsAuth] = useState(false)
+    useEffect(() => {
+        loggedinCheck()
+        }
+    )
+
+    const [isAuth, setIsAuth] = useState(false);
+
+    const loggedinCheck = async () => {
+        await axios.get("/sanctum/csrf-cookie").then(() => {
+             axios.get('/api/user')
+            .then((res) => {
+                if(res){
+                    setIsAuth(true)
+                } else {
+                    setIsAuth(false);
+                }
+            })
+        })
+    }
+
     const value = {
         isAuth, setIsAuth
     }
-    
+    const privateRoute = (    
+        <Routes>
+            <Route path="/" element={<Menu />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/Top" element={<GroupIndex />} />
+            <Route path="/Mypage" element={<Mypage />} />
+            <Route path="/*" element={<Notfound />} />
+        </Routes>
+    )
+
+    const guestRoute = (
+    <Routes>
+        <Route path="/" element={<Menu />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/*" element={<Notfound />} />
+    </Routes>
+    )
+
     return (
         <AuthContext.Provider value={value} >
-            <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                        <div>
-                            <Header />
-                            <div className="flex flex-col min-h-screen">
-                                <Routes>
-                                    <Route path="/" element={<Menu />} />
-                                    <Route path="/login" element={<Login />} />
-                                    <Route path="/register" element={<Register />} />
-                                    <Route path="/Top" element={<GroupIndex />} />
-                                    <Route path="/Mypage" element={<Mypage />} />
-                                    <Route path="/*" element={<Notfound />} />
-                                </Routes>
-                            </div>
-                            <Footer />
+            <BrowserRouter>
+                <div>
+                    <Header />
+                        <div className="flex flex-col min-h-screen">
+                            {isAuth ? privateRoute : guestRoute}
                         </div>
-                </BrowserRouter>
-            </QueryClientProvider>
+                    <Footer />
+                </div>
+            </BrowserRouter>
         </AuthContext.Provider>
     );
 }
