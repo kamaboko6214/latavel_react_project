@@ -41,7 +41,7 @@ const RouterMain = () => {
     }
     const privateRoute = (    
         <Routes>
-            <Route path="/" element={<Menu />} />
+            <Route path="/" element={<GroupIndex />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/Top" element={<GroupIndex />} />
