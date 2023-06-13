@@ -40,7 +40,7 @@ const Login = () => {
   }
 
   return (
-    <div className='bg-white flex w-ful flex-col items-center'>
+    <div className='bg-gray-100 flex w-ful flex-col items-center'>
       <h3 className='pt-5'>アカウントをお持ちの場合はこちら <span><Link to='/login'>ログイン</Link></span></h3>
       <h1 className='text-4xl r text-gray-900 font-bold mt-9 item-center'>新規登録</h1>
       <div class="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
