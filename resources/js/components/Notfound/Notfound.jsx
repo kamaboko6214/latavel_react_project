@@ -3,7 +3,7 @@ import React from 'react'
 const Notfound = () => {
     return (
         <div class="relative h-screen overflow-hidden">
-            <img src="img/laying.png" class="absolute object-cover w-full h-full" />
+            <img src="img/galaxy.png" class="absolute object-cover w-full h-full" />
             <div class="absolute inset-0 bg-black opacity-10">
             </div>
             <div class="container relative z-10 flex items-center px-6 py-32 mx-auto md:px-12 xl:py-40">

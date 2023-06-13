@@ -64,7 +64,7 @@ const RouterMain = () => {
             <BrowserRouter>
                 <div>
                     <Header />
-                        <div className="flex flex-col min-h-screen">
+                        <div className="grid min-h-screen">
                             {isAuth ? privateRoute : guestRoute}
                         </div>
                     <Footer />
