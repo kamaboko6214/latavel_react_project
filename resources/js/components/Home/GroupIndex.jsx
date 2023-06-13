@@ -25,7 +25,6 @@ const GroupIndex = () => {
         <div className='w-3/4'>
           <h1 className='text-gray-50 font-bold text-3xl mt-4'>
             グループ一覧
-            <button onClick={check}>check</button>
           </h1>
           <div className=''>
             <ul className>
