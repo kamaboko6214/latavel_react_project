@@ -18,19 +18,16 @@ const Login = () => {
 
   const handleClick = () => {
     const loginParams = { email, password }
-    axios.get("/sanctum/csrf-cookie").then((res) => {
+    axios.get("/sanctum/csrf-cookie").then(() => {
       axios.post("api/login",
         loginParams
       )
         .then((res) => {
-          console.log(res.data);
           if (res.data.status == 200) {
-            console.log('[login]ログイン成功');
-            setIsAuth(res.data.user);
             swal({ text: "ログイン成功", icon: "success" });
+            setIsAuth(res.data.result);
             navigate('/top');
           } else {
-            console.log(res.data.message);
             console.log('[login]ログイン失敗');
           }
         })

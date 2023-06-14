@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie';
 import { AuthContext } from '../RouterMain';
 
 const Guest = () => {
-    const [user, setuser] = useState(null);
     const navigate = useNavigate();
     const { isAuth, setIsAuth } = useContext(AuthContext);
 
@@ -17,7 +16,6 @@ const Guest = () => {
             )
                 .then((res) => {
                     if (res.data.result) {
-                        setuser(res.data.user);
                         swal({ text: "ゲストログイン", icon: "success" });
                         setIsAuth(res.data.result);
                         navigate('/top');

@@ -15,20 +15,21 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
-const RouterMain = () => {
-    useEffect(() => {
-        loggedinCheck()
-        }
-    )
-
-    const [isAuth, setIsAuth] = useState(false);
-
-    const loggedinCheck = async () => {
-        await axios.get("/sanctum/csrf-cookie").then(() => {
+    const RouterMain = () => {
+        const [isAuth, setIsAuth] = useState(false);
+        const [userinfo, setUserinfo] = useState('');
+        
+        useEffect(() => {
+            loggedinCheck();
+        },[isAuth]);
+    
+    const loggedinCheck = () => {
+        axios.get("/sanctum/csrf-cookie").then(() => {
              axios.get('/api/user')
             .then((res) => {
                 if(res){
-                    setIsAuth(true)
+                    setIsAuth(true);
+                    setUserinfo(res.data);
                 } else {
                     setIsAuth(false);
                 }
@@ -37,7 +38,7 @@ const RouterMain = () => {
     }
 
     const value = {
-        isAuth, setIsAuth
+        isAuth, setIsAuth, userinfo, setUserinfo
     }
     const privateRoute = (    
         <Routes>
