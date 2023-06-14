@@ -12,14 +12,11 @@ const Nav = () => {
         axios.post("api/logout",
         )
             .then((res) => {
-                console.log(res.data);
                 if (res) {
-                    console.log(res);
                     setIsAuth(false);
                     swal({ text: "ログアウトしました。", icon: "success" });
                     navigate('/');
                 } else {
-                    console.log(res.data.status);
                     console.log('ログアウト失敗');
                 }
             })

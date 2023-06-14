@@ -2,9 +2,9 @@ import React from 'react'
 
 const Mypage = () => {
   return (
-    <div className='bg-bg-content'>
+    <div className='bg-white-bg'>
       <div>
-        <h2 className='text-3xl text-center text-white'>マイページ</h2>
+        <h2 className='text-3xl text-center text-gray-600 mt-10'>マイページ</h2>
       </div>
       <div id='body' className='h-96 pb-20 w-ful flex items-center justify-center flex-col'>
         <div className='bg-white rounded-full h-44 w-44 mx-auto  absolute z-50'>
