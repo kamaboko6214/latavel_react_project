@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { AuthContext } from '../RouterMain';
@@ -18,11 +18,12 @@ const Login = () => {
 
   const handleClick = () => {
     const loginParams = { email, password }
-    axios.get("/sanctum/csrf-cookie").then(() => {
+    axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post("api/login",
         loginParams
       )
         .then((res) => {
+          console.log(res)
           if (res.data.status == 200) {
             swal({ text: "ログイン成功", icon: "success" });
             setIsAuth(res.data.result);
