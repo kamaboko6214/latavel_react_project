@@ -21,7 +21,7 @@ export const AuthContext = createContext();
         
         useEffect(() => {
             loggedinCheck();
-        },[isAuth]);
+        },[]);
     
     const loggedinCheck = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
@@ -43,8 +43,6 @@ export const AuthContext = createContext();
     const privateRoute = (    
         <Routes>
             <Route path="/" element={<GroupIndex />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/Top" element={<GroupIndex />} />
             <Route path="/Mypage" element={<Mypage />} />
             <Route path="/*" element={<Notfound />} />

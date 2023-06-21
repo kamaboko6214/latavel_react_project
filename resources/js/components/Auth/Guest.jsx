@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-import { useCookies } from 'react-cookie';
 import { AuthContext } from '../RouterMain';
 
 const Guest = () => {
@@ -14,15 +13,15 @@ const Guest = () => {
             axios.post("api/login",
                 loginParams
             )
-                .then((res) => {
-                    if (res.data.result) {
-                        swal({ text: "ゲストログイン", icon: "success" });
-                        setIsAuth(res.data.result);
-                        navigate('/top');
-                    } else {
-                        console.log('NG');
-                    }
-                })
+            .then((res) => {
+                if (res.data.result) {
+                    swal({ text: "ゲストログイン", icon: "success" });
+                    setIsAuth(res.data.result);
+                    navigate('/top');
+                } else {
+                    console.log('NG');
+                }
+            })
         })
     }
 
