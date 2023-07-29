@@ -12,6 +12,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Mypage from "./Mypage";
 import Notfound from "./Notfound/Notfound";
 import axios from "axios";
+import Create from "./Home/Create";
 
 export const AuthContext = createContext();
 
@@ -46,6 +47,7 @@ export const AuthContext = createContext();
             <Route path="/Top" element={<GroupIndex />} />
             <Route path="/Mypage" element={<Mypage />} />
             <Route path="/*" element={<Notfound />} />
+            <Route path="/create" element={<Create />} />
         </Routes>
     )
 
