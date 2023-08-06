@@ -22,11 +22,11 @@ export const AuthContext = createContext();
         
         useEffect(() => {
             loggedinCheck();
-        },[]);
+        },[isAuth]);
     
     const loggedinCheck = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
-             axios.get('/api/user')
+             axios.get("/api/user")
             .then((res) => {
                 if(res){
                     setIsAuth(true);
@@ -41,6 +41,7 @@ export const AuthContext = createContext();
     const value = {
         isAuth, setIsAuth, userinfo, setUserinfo
     }
+
     const privateRoute = (    
         <Routes>
             <Route path="/" element={<GroupIndex />} />
